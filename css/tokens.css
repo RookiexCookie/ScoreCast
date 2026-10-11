@@ -1,0 +1,57 @@
+/* Design tokens. Dark is the default; light via [data-theme="light"] on <html>. */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0D0F12;
+  --surface: #15181D;
+  --surface-2: #1C2027;
+  --line: #262B33;
+  --line-strong: #343A44;
+  --text: #E8EAED;
+  --text-2: #9AA3AF;
+  --text-3: #7D8693; /* adjusted from #646C78 to reach 4.5:1 on --surface */
+  --you: #C8F03C;
+  --you-ink: #0D0F12;
+  --pop: #7C8CFF;
+  --up: #4ADE9A;
+  --down: #FF7A6B;
+  --shadow: none;
+  --shadow-pop: 0 12px 32px rgba(0, 0, 0, .45);
+  --skeleton: #1F242B;
+  --skeleton-hi: #29303A;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: #F6F5F1;
+  --surface: #FFFFFF;
+  --surface-2: #F0EFEA;
+  --line: #E2E0D8;
+  --line-strong: #CFCCC2;
+  --text: #15181D;
+  --text-2: #5B6370;
+  --text-3: #6B717B; /* adjusted from #8A909A to reach 4.5:1 on white */
+  --you: #5A7A00;
+  --you-ink: #FFFFFF;
+  --pop: #4B5BD6;
+  --up: #11865A;
+  --down: #C8412F;
+  --shadow: 0 1px 2px rgba(20, 20, 20, .04), 0 4px 16px rgba(20, 20, 20, .04);
+  --shadow-pop: 0 12px 32px rgba(20, 20, 20, .12);
+  --skeleton: #EEEDE8;
+  --skeleton-hi: #F7F6F2;
+}
+
+:root {
+  --radius: 10px;
+  --radius-sm: 6px;
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", "SF Mono", Consolas, monospace;
+  --ease: cubic-bezier(.2, .8, .2, 1);
+  --t: 150ms;
+  --topbar: 56px;
+  --tabbar: 56px;
+  --content: 1240px;
+  --gap: 16px;
+  --pad: 20px;
+}

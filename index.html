@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scorecast — Exam Score Estimator</title>
+  <meta name="description" content="In-browser academic analytics and exam score estimator trained on real student performance data with empirical intervals and explainable factors.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230D0F12'/%3E%3Crect x='6' y='14' width='8' height='12' rx='2' fill='%237C8CFF'/%3E%3Crect x='16' y='6' width='10' height='20' rx='2' fill='%23C8F03C'/%3E%3C/svg%3E">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header / Topbar -->
+  <header class="topbar" role="banner">
+    <div class="topbar-inner">
+      <div style="display:flex;align-items:center;min-width:0;">
+        <a href="#/estimate" class="brand" aria-label="Scorecast home">
+          <svg class="brand-mark" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="10" width="7" height="12" rx="2" fill="var(--pop)" />
+            <rect x="11" y="2" width="10" height="20" rx="2.5" fill="var(--you)" />
+          </svg>
+          <span class="brand-name">Scorecast</span>
+        </a>
+        <span class="brand-tag">Exam score estimator</span>
+      </div>
+
+      <nav class="tabs" role="navigation" aria-label="Primary navigation">
+        <a href="#/estimate" class="tab" aria-current="page">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-6M6 20V10M18 20V4"/></svg>
+          <span>Estimate</span>
+        </a>
+        <a href="#/explore" class="tab">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <span>Explore data</span>
+        </a>
+        <a href="#/model" class="tab">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          <span>Model</span>
+        </a>
+        <a href="#/history" class="tab">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>History</span>
+        </a>
+      </nav>
+
+      <div class="topbar-right">
+        <div class="status is-ready" id="model-status-pill" title="Model training status">
+          <span class="status-dot"></span>
+          <span id="status-text">Linear · Ready</span>
+        </div>
+
+        <button type="button" class="icon-btn" id="btn-theme-toggle" aria-label="Toggle color theme" title="Toggle theme">
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Views Container -->
+  <main class="main" id="main-content" role="main">
+    <section id="view-estimate" class="view is-active" aria-label="Estimate Workspace"></section>
+    <section id="view-explore" class="view" aria-label="Explore Dataset"></section>
+    <section id="view-model" class="view" aria-label="Model Architecture and Metrics"></section>
+    <section id="view-history" class="view" aria-label="Prediction History"></section>
+  </main>
+
+  <!-- Notification Live Region -->
+  <div id="toast-region" class="toast-region" aria-live="polite"></div>
+
+  <!-- Scripts: dependency order (vanilla ES6, zero external modules) -->
+  <script defer src="js/data.js"></script>
+  <script defer src="js/dataset.js"></script>
+  <script defer src="js/models.js"></script>
+  <script defer src="js/storage.js"></script>
+  <script defer src="js/predictor.js"></script>
+  <script defer src="js/charts.js"></script>
+  <script defer src="js/views/estimate.js"></script>
+  <script defer src="js/views/explore.js"></script>
+  <script defer src="js/views/model.js"></script>
+  <script defer src="js/views/history.js"></script>
+  <script defer src="js/app.js"></script>
+</body>
+</html>
